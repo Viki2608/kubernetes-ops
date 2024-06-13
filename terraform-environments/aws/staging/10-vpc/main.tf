@@ -36,7 +36,7 @@ provider "aws" {
 # VPC
 #
 module "vpc" {
-  source = "github.com/ManagedKube/kubernetes-ops//terraform-modules/aws/vpc?ref=v1.0.30"
+  source = "github.com/ManagedKube/kubernetes-ops//terraform-modules/aws/vpc?ref=v2.0.92"
 
   aws_region       = local.aws_region
   azs              = ["us-west-2a", "us-west-2b"]
