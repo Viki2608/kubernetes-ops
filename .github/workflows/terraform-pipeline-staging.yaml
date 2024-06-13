@@ -90,35 +90,35 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      # - name: Setup Terraform
-      #   uses: hashicorp/setup-terraform@v1
-      #   with:
-      #     # terraform_version: 0.13.0:
-      #     cli_config_credentials_token: ${{ secrets.TF_API_TOKEN_STAGING }}
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v1
+        with:
+          # terraform_version: 0.13.0:
+          cli_config_credentials_token: ${{ secrets.TF_API_TOKEN_STAGING }}
 
-      # # - name: debug1
-      # #   id: debug1
-      # #   working-directory: ${{matrix.tf_config}}
-      # #   run: |
-      # #     pwd
-      # #     ls -l
-
-      # - name: Terraform Format
-      #   id: fmt
+      # - name: debug1
+      #   id: debug1
       #   working-directory: ${{matrix.tf_config}}
-      #   run: terraform fmt -check
+      #   run: |
+      #     pwd
+      #     ls -l
 
-      # - name: Terraform Init
-      #   id: init
-      #   working-directory: ${{matrix.tf_config}}
-      #   run: terraform init
+      - name: Terraform Format
+        id: fmt
+        working-directory: ${{matrix.tf_config}}
+        run: terraform fmt -check
 
-      # - name: Terraform Plan
-      #   id: plan
-      #   working-directory: ${{matrix.tf_config}}
-      #   if: github.event_name == 'pull_request'
-      #   run: terraform plan -no-color
-      #   continue-on-error: true
+      - name: Terraform Init
+        id: init
+        working-directory: ${{matrix.tf_config}}
+        run: terraform init
+
+      - name: Terraform Plan
+        id: plan
+        working-directory: ${{matrix.tf_config}}
+        if: github.event_name == 'pull_request'
+        run: terraform plan -no-color
+        continue-on-error: true
 
       - uses: actions/github-script@v7
         if: github.event_name == 'pull_request'
