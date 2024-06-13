@@ -47,3 +47,4 @@ module "vpc" {
   cluster_name     = local.environment_name
   tags             = local.tags
 }
+
