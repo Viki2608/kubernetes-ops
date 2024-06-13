@@ -83,6 +83,9 @@ jobs:
     strategy:
       matrix: ${{fromJson(needs.generate_matrix.outputs.matrix)}}
     runs-on: ubuntu-latest
+    permissions:
+      contents: write  # Example permission
+      packages: write
     steps:
       - name: Checkout
         uses: actions/checkout@v2
